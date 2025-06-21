@@ -11,38 +11,27 @@
 #include <LiquidCrystal_I2C.h>
 #include <ArduinoJson.h>
 
-// Define DHT sensor parameters
+#include "secrets.h"
+
 #define DHTPIN 2
 #define DHTTYPE DHT11
 
-// Define MQ-135 Sensor
 #define MQ135 35
 #define BUZZER 18
-int threshold = 2200; //Threshold level for Air Quality
+int threshold = 2200;
 
-// Define Sound Sensor
 #define SOUNDSENSOR 34
 
-// Define Led
 #define LED 19 // Not pin ADC
 #define TV 17
 #define CEILINGFAN 16
 
-// Define Fan
 #define FAN 5
 
-// Define Firebase API Key, Project ID, and user credentials
-#define API_KEY "AIzaSyBglT5JoUEMpSIeYqwQ5nU-XD8g8Sram6w"
-#define FIREBASE_PROJECT_ID "greenhouse-16b3b"
-#define USER_EMAIL "vitran6366@gmail.com"
-#define USER_PASSWORD "Trandaivi0910@"
-
-// Define Firebase Data object, Firebase authentication, and configuration
 FirebaseData fbdo;
 FirebaseAuth auth;
 FirebaseConfig config;
 
-// Initialize the DHT sensor
 DHT dht(DHTPIN, DHTTYPE);
 
 WiFiMulti wifiMulti;
@@ -51,10 +40,8 @@ unsigned long time1;
 unsigned long time2;
 
 void setup() {
-  // Initialize serial communication for debugging
   Serial.begin(115200);
 
-  // Initialize the DHT sensor
   dht.begin();
 
   // Set up MQ135
